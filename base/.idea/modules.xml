@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../app/app.iml" filepath="$PROJECT_DIR$/../app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base.iml" filepath="$PROJECT_DIR$/base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../efanyi.iml" filepath="$PROJECT_DIR$/../efanyi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../lib_FlexibleCalendar/lib_FlexibleCalendar.iml" filepath="$PROJECT_DIR$/../lib_FlexibleCalendar/lib_FlexibleCalendar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../lib_IMKit/lib_IMKit.iml" filepath="$PROJECT_DIR$/../lib_IMKit/lib_IMKit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../lib_autoFitText/lib_autoFitText.iml" filepath="$PROJECT_DIR$/../lib_autoFitText/lib_autoFitText.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../lib_litepal/lib_litepal.iml" filepath="$PROJECT_DIR$/../lib_litepal/lib_litepal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../lib_mediapicker/lib_mediapicker.iml" filepath="$PROJECT_DIR$/../lib_mediapicker/lib_mediapicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../lib_pickerview/lib_pickerview.iml" filepath="$PROJECT_DIR$/../lib_pickerview/lib_pickerview.iml" />
+    </modules>
+  </component>
+</project>
