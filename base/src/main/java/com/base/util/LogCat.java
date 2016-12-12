@@ -10,11 +10,10 @@ import android.util.Log;
  */
 public class LogCat {
 
-    private LogCat(){}
     /**
      * 是否为开发者模式(开发模式打印LOG,非开发模式不打印LOG)
      */
-    private static boolean isDebug = true;
+    private static boolean isLog = true;
 
     public static final String TAG = "LogCat";
 
@@ -28,19 +27,14 @@ public class LogCat {
 
     public static void i(String tag, String message) {
 
-        if (isDebug){
+        if (isLog) {
 
-            if (message == null){
+            if (message == null) {
                 Log.i(tag, "null");
-            }else{
+            } else {
                 Log.i(tag, message);
             }
-
-
         }
-
-
-
     }
 
     public static void i(int message) {
@@ -51,7 +45,7 @@ public class LogCat {
 
     public static void i(String tag, int message) {
 
-        if (isDebug) {
+        if (isLog) {
             Log.i(tag, Integer.toString(message));
         }
 
@@ -65,7 +59,7 @@ public class LogCat {
 
     public static void i(String tag, short message) {
 
-        if (isDebug){
+        if (isLog) {
             Log.i(tag, Short.toString(message));
         }
 
@@ -79,7 +73,7 @@ public class LogCat {
 
     public static void i(String tag, Long message) {
 
-        if (isDebug){
+        if (isLog) {
             Log.i(tag, Long.toString(message));
         }
 
@@ -94,7 +88,7 @@ public class LogCat {
 
     public static void i(String tag, byte message) {
 
-        if (isDebug){
+        if (isLog) {
             Log.i(tag, Byte.toString(message));
         }
 
@@ -108,7 +102,7 @@ public class LogCat {
 
     public static void i(String tag, char message) {
 
-        if (isDebug){
+        if (isLog) {
             Log.i(tag, Character.toString(message));
         }
 
@@ -123,7 +117,7 @@ public class LogCat {
 
     public static void i(String tag, float message) {
 
-        if (isDebug){
+        if (isLog) {
             Log.i(tag, Float.toString(message));
         }
 
@@ -137,7 +131,7 @@ public class LogCat {
 
     public static void i(String tag, double message) {
 
-        if (isDebug){
+        if (isLog) {
             Log.i(tag, Double.toString(message));
         }
 
@@ -151,7 +145,7 @@ public class LogCat {
 
     public static void i(String tag, boolean message) {
 
-        if (isDebug){
+        if (isLog) {
             Log.i(tag, Boolean.toString(message));
         }
 
@@ -167,7 +161,7 @@ public class LogCat {
     public static void i(String tag, Object message) {
 
 
-        if (isDebug){
+        if (isLog) {
             Log.i(tag, String.valueOf(message));
         }
 
@@ -176,7 +170,7 @@ public class LogCat {
 
     public static void e(String tag, String message, Exception e) {
 
-        if (isDebug){
+        if (isLog) {
             Log.e(tag, message, e.getCause());
         }
 

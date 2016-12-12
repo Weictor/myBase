@@ -17,6 +17,26 @@ import android.view.WindowManager;
 public class DensityUtils {
 
     /**
+     * 获取屏幕的宽的px
+     *
+     * @param context
+     * @return
+     */
+    public static float getScreenWPX(Context context) {
+        return context.getResources().getDisplayMetrics().xdpi;
+    }
+
+    /**
+     * 获取屏幕的高的px
+     *
+     * @param context
+     * @return
+     */
+    public static float getScreenHPX(Context context) {
+        return context.getResources().getDisplayMetrics().ydpi;
+    }
+
+    /**
      * 获取屏幕宽度
      */
     public static int getScreenWidth(Context context) {
@@ -104,19 +124,16 @@ public class DensityUtils {
      * @param context
      * @return
      */
-    public static int getStatusHeight(Context context)
-    {
+    public static int getStatusHeight(Context context) {
 
         int statusHeight = -1;
-        try
-        {
+        try {
             Class<?> clazz = Class.forName("com.android.internal.R$dimen");
             Object object = clazz.newInstance();
             int height = Integer.parseInt(clazz.getField("status_bar_height")
                     .get(object).toString());
             statusHeight = context.getResources().getDimensionPixelSize(height);
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return statusHeight;
@@ -128,8 +145,7 @@ public class DensityUtils {
      * @param activity
      * @return
      */
-    public static Bitmap snapShotWithStatusBar(Activity activity)
-    {
+    public static Bitmap snapShotWithStatusBar(Activity activity) {
         View view = activity.getWindow().getDecorView();
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();
@@ -149,8 +165,7 @@ public class DensityUtils {
      * @param activity
      * @return
      */
-    public static Bitmap snapShotWithoutStatusBar(Activity activity)
-    {
+    public static Bitmap snapShotWithoutStatusBar(Activity activity) {
         View view = activity.getWindow().getDecorView();
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();

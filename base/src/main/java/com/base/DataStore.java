@@ -1,14 +1,21 @@
-package com.bm.base;
+package com.base;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.LinearGradient;
 
 import com.base.util.FileUtil;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
 
 /**
  * Created by 俞智威
@@ -79,6 +86,67 @@ public class DataStore {
             FileUtil.closeOutputStream(oos);
 
         }
+    }
+
+    /**
+     * 保存String 文件到本地
+     *
+     * @param inputText
+     * @param fileName
+     */
+    public static void saveString(String inputText, String fileName) {
+        FileOutputStream outputStream = null;
+        BufferedWriter writer = null;
+        try {
+            outputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+            writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+            writer.write(inputText);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    /**
+     * 从本地读取String文件
+     *
+     * @param fileName
+     */
+    public static String loadString(String fileName) {
+        FileInputStream inputStream = null;
+        BufferedReader reader = null;
+        StringBuilder content = new StringBuilder();
+        try {
+            inputStream = context.openFileInput(fileName);
+            reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                content.append(line);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return content.toString();
     }
 
 

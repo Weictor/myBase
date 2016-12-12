@@ -22,7 +22,9 @@ public class ActivityCollector {
      * @param activity
      */
     public static void addActivity(Activity activity) {
-        activities.add(activity);
+        if (!activities.contains(activity)) {
+            activities.add(activity);
+        }
     }
 
     /**
@@ -31,7 +33,9 @@ public class ActivityCollector {
      * @param activity
      */
     public static void removeActivity(Activity activity) {
-        activities.remove(activity);
+        if (activities.contains(activity)) {
+            activities.remove(activity);
+        }
     }
 
     /**
