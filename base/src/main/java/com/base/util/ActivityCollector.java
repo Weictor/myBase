@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ActivityCollector {
 
-    public static List<Activity> activities = new ArrayList<Activity>();
+    public static final List<Activity> activities = new ArrayList<Activity>();
 
     /**
      * 添加activity到集合

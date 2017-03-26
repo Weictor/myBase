@@ -96,24 +96,23 @@ public class PostJsonHolder<T> {
     }
 
     public String getRequestBody() {
-        String res = "";
+        StringBuffer stringBuffer = new StringBuffer();
         Field fields[] = object.getClass().getDeclaredFields();// 获得对象所有属性
         if (fields.length != 0) {
             for (int i = 0; i < fields.length; i++) {
                 try {
                     fields[i].setAccessible(true);
-                    res += fields[i].getName();
-                    res += "=";
-                    res += fields[i].get(object);
-                    res += "&";
+                    stringBuffer.append(fields[i].getName());
+                    stringBuffer.append("=");
+                    stringBuffer.append(fields[i].get(object));
+                    stringBuffer.append("&");
                 } catch (IllegalArgumentException | IllegalAccessException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
-            return res.substring(0, res.length() - 1);
+            return stringBuffer.substring(0, stringBuffer.length() - 1);
         } else
-            return res;
+            return stringBuffer.toString();
     }
 
 }

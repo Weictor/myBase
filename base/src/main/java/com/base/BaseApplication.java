@@ -20,7 +20,7 @@ import org.litepal.LitePalApplication;
 public class BaseApplication extends LitePalApplication {
 
     public static final String TAG = "BaseApplication";
-    public static String BASE_SETTING_KEY = TAG;
+    public static final String BASE_SETTING_KEY = TAG;
 
     public static final String KEY_VERSION = "version";
     private boolean isFirstStart;

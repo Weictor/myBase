@@ -20,7 +20,7 @@ public class NetworkReceiver extends BroadcastReceiver {
     public static final String TAG = "NetworkReceiver";
 
 
-    public static List<Observable> observableList = new ArrayList<Observable>();
+    public static final List<Observable> observableList = new ArrayList<Observable>();
 
     public static void registerObservable(Observable observable){
 

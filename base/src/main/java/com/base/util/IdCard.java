@@ -97,7 +97,7 @@ public class IdCard {
     /**
      * 将15位的身份证转成18位身份证
      */
-    public String convertIdcarBy15bit(String idcard) {
+    public String convertIdcarBy15bit(String idcard) throws ParseException {
         String idcard17 = null;
         // 非15位身份证
         if (idcard.length() != 15) {
@@ -107,34 +107,30 @@ public class IdCard {
         if (isDigital(idcard)) {
             // 获取出生年月日
             String birthday = idcard.substring(6, 12);
-            Date birthdate = null;
-            try {
-                birthdate = new SimpleDateFormat("yyMMdd").parse(birthday);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Date birthdate = new SimpleDateFormat("yyMMdd").parse(birthday);
             Calendar cday = Calendar.getInstance();
-            cday.setTime(birthdate);
-            String year = String.valueOf(cday.get(Calendar.YEAR));
-
-            idcard17 = idcard.substring(0, 6) + year + idcard.substring(8);
-
-            char c[] = idcard17.toCharArray();
-            String checkCode = "";
-
-            // 将字符数组转为整型数组
-            int[] bit = converCharToInt(c);
-            int sum17 = getPowerSum(bit);
-
-            // 获取和值与11取模得到余数进行校验码
-            checkCode = getCheckCodeBySum(sum17);
-            // 获取不到校验位
-            if (null == checkCode) {
+            if (birthdate != null) {
+                cday.setTime(birthdate);
+                String year = String.valueOf(cday.get(Calendar.YEAR));
+                idcard17 = idcard.substring(0, 6) + year + idcard.substring(8);
+                char c[] = idcard17.toCharArray();
+                // 将字符数组转为整型数组
+                int[] bit = converCharToInt(c);
+                int sum17 = getPowerSum(bit);
+                String checkCode = "";
+                // 获取和值与11取模得到余数进行校验码
+                checkCode = getCheckCodeBySum(sum17);
+                // 获取不到校验位
+                if (null == checkCode) {
+                    return null;
+                }
+                // 将前17位与第18位校验码拼接
+                idcard17 += checkCode;
+            } else { // 身份证包含数字
                 return null;
             }
 
-            // 将前17位与第18位校验码拼接
-            idcard17 += checkCode;
+
         } else { // 身份证包含数字
             return null;
         }
@@ -179,7 +175,7 @@ public class IdCard {
     /**
      * 验证所有的身份证的合法性
      */
-    public boolean isValidatedAllIdcard(String idcard) {
+    public boolean isValidatedAllIdcard(String idcard) throws ParseException {
         if (idcard.length() == 15) {
             idcard = this.convertIdcarBy15bit(idcard);
         }

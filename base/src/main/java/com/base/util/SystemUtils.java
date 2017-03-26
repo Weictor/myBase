@@ -149,7 +149,6 @@ public class SystemUtils {
     public static boolean isAppInstalled(Context context, String packageName) {
         PackageManager packageManager = context.getPackageManager();
         List<PackageInfo> listInfo = packageManager.getInstalledPackages(0);
-        Log.i("", "list.size = " + listInfo.size());
         if (listInfo != null) {
             for (int i = 0; i < listInfo.size(); i++) {
                 Log.i("", "packageName = " + listInfo.get(i).packageName);

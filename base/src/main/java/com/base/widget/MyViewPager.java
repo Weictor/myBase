@@ -448,7 +448,7 @@ public class MyViewPager extends RelativeLayout {
     /**
      * 自动滑动的线程类
      */
-    public class AutoRoll implements Runnable {
+    public static class AutoRoll implements Runnable {
 
         private ViewPager viewPager;
         private Handler handler;

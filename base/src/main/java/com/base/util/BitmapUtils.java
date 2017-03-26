@@ -197,7 +197,6 @@ public class BitmapUtils {
      * @param bitmap
      * @param roundPx
      * @return Bitmap
-     * @author luxf 2015-4-1 下午5:48:54
      */
     public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, float roundPx) {
         int w = bitmap.getWidth();
@@ -221,7 +220,6 @@ public class BitmapUtils {
     /**
      * 将Bitmap转换成InputStream
      *
-     * @author luxf 2015-4-1 下午5:54:12
      * @param bm
      * @param quality
      * @return
@@ -237,7 +235,6 @@ public class BitmapUtils {
     /**
      * 将InputStream转换成Bitmap
      *
-     * @author luxf 2015-4-1 下午5:54:27
      * @param is
      * @return
      * @return Bitmap

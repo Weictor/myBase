@@ -1,5 +1,4 @@
 <resources>
-    <string name="NetWorkFail">网络连接不畅</string>
     <string name="data_fail">网络不通畅</string>
     <string name="photo">相册</string>
     <string name="camera">拍照</string>

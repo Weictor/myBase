@@ -156,14 +156,14 @@ public class ImageLoaderUtil {
         return options;
     }
 
-    public static String FILE = "^[Ff][Ii][Ll][Ee]://[\\S]*";
-    public static String HTTP = "^[Hh][Tt][Tt][Pp]://[\\S]*";
-    public static String HTTPS = "^[Hh][Tt][Tt][Pp][Ss]://[\\S]*";
-    public static String CONTENT = "^[Cc][Oo][Nn][Tt][Ee][Nn][Tt]://[\\S]*";
-    public static String ASSETS = "^[Aa][Ss][Ee][Tt][Ss]://[\\S]*";
-    public static String DRAWABLE = "^[Dd][Rr][Aa][Ww][Aa][Bb][Ll][Ee]://[\\S]*";
+    public static final String FILE = "^[Ff][Ii][Ll][Ee]://[\\S]*";
+    public static final String HTTP = "^[Hh][Tt][Tt][Pp]://[\\S]*";
+    public static final String HTTPS = "^[Hh][Tt][Tt][Pp][Ss]://[\\S]*";
+    public static final String CONTENT = "^[Cc][Oo][Nn][Tt][Ee][Nn][Tt]://[\\S]*";
+    public static final String ASSETS = "^[Aa][Ss][Ee][Tt][Ss]://[\\S]*";
+    public static final String DRAWABLE = "^[Dd][Rr][Aa][Ww][Aa][Bb][Ll][Ee]://[\\S]*";
 
-    public static String NO_TRANSFORMATION = "(" + FILE + ")|("
+    public static final String NO_TRANSFORMATION = "(" + FILE + ")|("
             + HTTP + ")|("
             + HTTPS + ")|("
             + CONTENT + ")|("

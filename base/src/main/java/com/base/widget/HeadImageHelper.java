@@ -68,9 +68,9 @@ public class HeadImageHelper implements View.OnClickListener {
 
     public void setHeadView(ImageView headView) {
 
-        if(headView == null){
+        if (headView == null) {
             this.headView.setOnClickListener(null);
-        }else {
+        } else {
             headView.setOnClickListener(new ShowOnClickListener());
         }
 
@@ -149,15 +149,15 @@ public class HeadImageHelper implements View.OnClickListener {
 
         } else if (v.getId() == R.id.pop_head_button3) {  //取消
 
-          dismiss();
+            dismiss();
 
         }
     }
 
 
-    public void OnActivityResult(int requestCode, int resultCode, Intent data){
+    public void OnActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(headView == null){
+        if (headView == null) {
             return;
         }
 
@@ -176,23 +176,23 @@ public class HeadImageHelper implements View.OnClickListener {
                     Bitmap photo = extras.getParcelable("data");
                     bitmap = photo;
 
-                    if(onResultBitmap == null){
+                    if (onResultBitmap == null) {
                         headView.setImageBitmap(photo);
-                    }else {
-                        onResultBitmap.setBitmap(photo,headView);
+                    } else {
+                        onResultBitmap.setBitmap(photo, headView);
                     }
 
                 }
                 dismiss();
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
 
 
-    class ShowOnClickListener implements View.OnClickListener{
+    class ShowOnClickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
@@ -200,7 +200,7 @@ public class HeadImageHelper implements View.OnClickListener {
         }
     }
 
-    public static interface OnResultBitmap{
+    public static interface OnResultBitmap {
         public void setBitmap(Bitmap bitmap, ImageView imageView);
     }
 

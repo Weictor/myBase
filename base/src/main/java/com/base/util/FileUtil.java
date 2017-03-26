@@ -69,11 +69,12 @@ public class FileUtil {
         int index = path.lastIndexOf('/');
         return path.substring(index + 1);
     }
+
     /**
      * 在指定的位置创建指定的文件
      *
      * @param filePath 完整的文件路径
-     * @param mkdir 是否创建相关的文件夹
+     * @param mkdir    是否创建相关的文件夹
      * @throws Exception
      */
     public static void mkFile(String filePath, boolean mkdir) throws Exception {
@@ -97,9 +98,7 @@ public class FileUtil {
      * 删除指定的文件
      *
      * @param filePath 文件路径
-     *
      * @return 若删除成功，则返回True；反之，则返回False
-     *
      */
     public static boolean delFile(String filePath) {
         return new File(filePath).delete();
@@ -111,7 +110,6 @@ public class FileUtil {
      * @param dirPath 文件夹路径
      * @param delFile 文件夹中是否包含文件
      * @return 若删除成功，则返回True；反之，则返回False
-     *
      */
     public static boolean delDir(String dirPath, boolean delFile) {
         if (delFile) {
@@ -142,8 +140,9 @@ public class FileUtil {
 
     /**
      * 复制文件/文件夹 若要进行文件夹复制，请勿将目标文件夹置于源文件夹中
-     * @param source 源文件（夹）
-     * @param target 目标文件（夹）
+     *
+     * @param source   源文件（夹）
+     * @param target   目标文件（夹）
      * @param isFolder 若进行文件夹复制，则为True；反之为False
      * @throws Exception
      */
@@ -154,26 +153,28 @@ public class FileUtil {
             File a = new File(source);
             String[] file = a.list();
             File temp = null;
-            for (int i = 0; i < file.length; i++) {
-                if (source.endsWith(File.separator)) {
-                    temp = new File(source + file[i]);
-                } else {
-                    temp = new File(source + File.separator + file[i]);
-                }
-                if (temp.isFile()) {
-                    FileInputStream input = new FileInputStream(temp);
-                    FileOutputStream output = new FileOutputStream(target + "/" + (temp.getName()).toString());
-                    byte[] b = new byte[1024];
-                    int len;
-                    while ((len = input.read(b)) != -1) {
-                        output.write(b, 0, len);
+            if (file != null) {
+                for (int i = 0; i < file.length; i++) {
+                    if (source.endsWith(File.separator)) {
+                        temp = new File(source + file[i]);
+                    } else {
+                        temp = new File(source + File.separator + file[i]);
                     }
-                    output.flush();
-                    output.close();
-                    input.close();
-                }
-                if (temp.isDirectory()) {
-                    copy(source + "/" + file[i], target + "/" + file[i], true);
+                    if (temp.isFile()) {
+                        FileInputStream input = new FileInputStream(temp);
+                        FileOutputStream output = new FileOutputStream(target + "/" + (temp.getName()).toString());
+                        byte[] b = new byte[1024];
+                        int len;
+                        while ((len = input.read(b)) != -1) {
+                            output.write(b, 0, len);
+                        }
+                        output.flush();
+                        output.close();
+                        input.close();
+                    }
+                    if (temp.isDirectory()) {
+                        copy(source + "/" + file[i], target + "/" + file[i], true);
+                    }
                 }
             }
         } else {
@@ -197,8 +198,9 @@ public class FileUtil {
 
     /**
      * 移动指定的文件（夹）到目标文件（夹）
-     * @param source 源文件（夹）
-     * @param target 目标文件（夹）
+     *
+     * @param source   源文件（夹）
+     * @param target   目标文件（夹）
      * @param isFolder 若为文件夹，则为True；反之为False
      * @return
      * @throws Exception
@@ -347,6 +349,7 @@ public class FileUtil {
 
     /**
      * 获取文件的大小
+     *
      * @param size
      * @return
      */
