@@ -29,7 +29,6 @@ public class GuidePagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-
         return views.size();
     }
 
@@ -37,18 +36,15 @@ public class GuidePagerAdapter extends PagerAdapter {
     public void destroyItem(ViewGroup container, int position,
                             Object object) {
         container.removeView(views.get(position));
-
     }
 
     @Override
     public int getItemPosition(Object object) {
-
         return super.getItemPosition(object);
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-
         return views.get(position) + "";
     }
 

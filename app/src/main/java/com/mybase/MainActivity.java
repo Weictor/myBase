@@ -4,42 +4,24 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import com.base.interfaces.ShowData;
-import com.base.volley.HttpConnect;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.shizhefei.mvc.MVCHelper;
-import com.shizhefei.mvc.MVCSwipeRefreshHelper;
+import com.base.util.StatusBarUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity implements PullToRefreshBase.OnRefreshListener {
+public class MainActivity extends AppCompatActivity {
 
 //    private RecyclerView recyclerView;
 //    PullToRefreshListView pullToRefreshListView;
 //    private List<TextBean> list;
 
-    private MVCHelper<List<TextBean>> mvcHelper;
-    private Adapter adapter;
     MeiZhuNotification notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        StatusBarUtil.setColor(this, getResources().getColor(com.bm.base.R.color.actionsheet_blue));
 
         SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        mvcHelper = new MVCSwipeRefreshHelper<List<TextBean>>(swipeRefreshLayout);
-        // 设置数据源
-        mvcHelper.setDataSource(new TextBeansDataSource(this));
-        // 设置适配器
-        mvcHelper.setAdapter(new Adapter(this));
-
-        // 加载数据
-        mvcHelper.refresh();
 
 
         notification = new MeiZhuNotification.Builder().setContext(MainActivity.this)
@@ -97,19 +79,6 @@ public class MainActivity extends AppCompatActivity implements PullToRefreshBase
 //        }, new GetCodeForUserPostBean("18640080104", 1));
 
         notification.show();
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // 释放资源
-        mvcHelper.destory();
-    }
-
-
-    @Override
-    public void onRefresh(PullToRefreshBase refreshView) {
 
     }
 }
