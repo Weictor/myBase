@@ -1,17 +1,12 @@
 package com.mybase;
 
 
-import android.app.Activity;
-import android.app.Dialog;
-
-import com.base.interfaces.ShowData;
-import com.base.util.LogCat;
-import com.base.volley.BaseRequest;
+import com.base.interfaces.GetData;
 import com.base.volley.FastJsonRequest;
+import com.base.volley.Holder;
 import com.base.volley.HttpConnect;
-import com.base.volley.PostJsonHolder;
-import com.base.volley.PostJsonRequest;
-import com.base.widget.ProgressDialog;
+
+import java.util.Map;
 
 /**
  * Create by 俞智威
@@ -25,11 +20,14 @@ public class HttpService {
     public static final String METHOD_FIND_TRANSLATION_LIST = "app/make/findTranslationList";//p4-2预约详情(翻译列表)
     public static final String METHOD_GET_CODE_FOR_USER = "app/user/getCodeForUser";//获取验证码
 
-    public static void findTranslationList(ShowData<FindTranslationListBean> showData, FindTranslationListPostBean post) {
-        BaseRequest.Holder<FindTranslationListBean> holder = new BaseRequest.Holder();
-        holder.setShowData(showData)
+    public static void findTranslationList(int tag, GetData getData, FindTranslationListPostBean post, Map<String, String> paramMap) {
+        Holder<FindTranslationListBean> holder = new Holder();
+        holder.setGetData(getData)
+                .setTag(tag)
                 .setUrl(IP + METHOD_FIND_TRANSLATION_LIST)
-                .setPostValues(post);
+//                .setPostValues(post)
+                .setParams(paramMap)
+                .logParamsValues();
 //        holder.setParam("token", post.getToken());
 //        holder.setParam("sex", post.getSex());
 //        holder.setParam("provinceid", post.getProvinceid());
@@ -46,12 +44,13 @@ public class HttpService {
     /**
      * 获取验证码
      *
-     * @param showData
+     * @param getData
      * @param post
      */
-    public static void getCodeForUser(ShowData<GetCodeForUserBean> showData, GetCodeForUserPostBean post) {
-        BaseRequest.Holder<GetCodeForUserBean> holder = new BaseRequest.Holder();
-        holder.setShowData(showData)
+    public static void getCodeForUser(int tag, GetData getData, GetCodeForUserPostBean post) {
+        Holder<GetCodeForUserBean> holder = new Holder();
+        holder.setGetData(getData)
+                .setTag(tag)
                 .setUrl(IP + METHOD_GET_CODE_FOR_USER)
                 .setPostValues(post);
         HttpConnect.getInstance().add(new FastJsonRequest(holder, GetCodeForUserBean.class));

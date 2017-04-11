@@ -1,4 +1,4 @@
-package com.mybase;
+package com.base.widget;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -14,13 +14,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import java.util.Date;
-import java.util.Locale;
+import com.bm.base.R;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Create by 俞智威

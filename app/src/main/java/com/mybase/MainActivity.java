@@ -4,10 +4,17 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
+import com.base.interfaces.GetData;
 import com.base.util.StatusBarUtil;
+import com.base.volley.HttpConnect;
+import com.base.widget.MeiZhuNotification;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.HashMap;
+import java.util.Map;
+
+public class MainActivity extends AppCompatActivity implements GetData<BaseBean> {
 
 //    private RecyclerView recyclerView;
 //    PullToRefreshListView pullToRefreshListView;
@@ -22,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         StatusBarUtil.setColor(this, getResources().getColor(com.bm.base.R.color.actionsheet_blue));
 
         SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-
+        HttpConnect.init(getApplicationContext());
 
         notification = new MeiZhuNotification.Builder().setContext(MainActivity.this)
                 .setTime(System.currentTimeMillis())
@@ -57,28 +64,44 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void clickme(View view) {
-//        HttpService.findTranslationList(new ShowData<FindTranslationListBean>() {
-//            @Override
-//            public void showData(FindTranslationListBean findTranslationListBean) {
-//                if (findTranslationListBean.isSuccess()) {
-//                    Toast.makeText(MainActivity.this, "成功", Toast.LENGTH_SHORT).show();
-//                } else
-//                    Toast.makeText(MainActivity.this, "失败", Toast.LENGTH_SHORT).show();
-//            }
-//        }, new FindTranslationListPostBean("2B06414BC1F54AF4B438DC71DF7CC0A9", "",
-//                "", "", "2", "8", ""));
+        Map<String, String> map = new HashMap<>();
+        map.put("token", "2B06414BC1F54AF4B438DC71DF7CC0A9");
+        map.put("level", "2");
+        map.put("languageid", "8");
+        HttpService.findTranslationList(1, this,
+                new FindTranslationListPostBean("2B06414BC1F54AF4B438DC71DF7CC0A9", "",
+                        "", "", "2", "8", ""), map);
 
-//        HttpService.getCodeForUser(new ShowData<GetCodeForUserBean>() {
-//            @Override
-//            public void showData(GetCodeForUserBean getCodeForUserBean) {
-//                if (getCodeForUserBean.isSuccess()) {
+//        notification.show();
+
+    }
+
+    public void clickme1(View view) {
+
+        HttpService.getCodeForUser(2, this, new GetCodeForUserPostBean("18640080104", 1));
+
+    }
+
+    @Override
+    public void getData(BaseBean baseBean, int tag) {
+        if (tag == 1) {
+            FindTranslationListBean findTranslationListBean = (FindTranslationListBean) baseBean;
+            if (findTranslationListBean.isSuccess()) {
+                Toast.makeText(MainActivity.this, "成功", Toast.LENGTH_SHORT).show();
+            } else
+                Toast.makeText(MainActivity.this, "失败", Toast.LENGTH_SHORT).show();
+        } else if (tag == 2) {
+            GetCodeForUserBean getCodeForUserBean = (GetCodeForUserBean) baseBean;
+            if (getCodeForUserBean.isSuccess()) {
+                Toast.makeText(MainActivity.this, getCodeForUserBean.getData() + "", Toast.LENGTH_SHORT).show();
+            } else
+                Toast.makeText(MainActivity.this, getCodeForUserBean.getMsg(), Toast.LENGTH_SHORT).show();
+        }
+//        if (baseBean instanceof FindTranslationListBean) {
 //
-//                } else
-//                    Toast.makeText(MainActivity.this, getCodeForUserBean.getMsg(), Toast.LENGTH_SHORT).show();
-//            }
-//        }, new GetCodeForUserPostBean("18640080104", 1));
-
-        notification.show();
+//        } else if (baseBean instanceof GetCodeForUserBean) {
+//
+//        }
 
     }
 }

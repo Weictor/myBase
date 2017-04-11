@@ -13,6 +13,15 @@
         android:layout_height="wrap_content"
         android:text="click me" />
 
+    <TextView
+        android:onClick="clickme1"
+        android:padding="15dp"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="click me1" />
+
 
     <!--<android.support.v7.widget.RecyclerView-->
     <!--android:id="@+id/recycle"-->

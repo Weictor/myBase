@@ -1,7 +1,5 @@
 package com.base.volley;
 
-import android.util.Log;
-
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Response;
@@ -21,26 +19,26 @@ import com.google.gson.Gson;
 public class PostJsonRequest<T> extends JsonRequest<T> {
 
     private Class<T> tClass;
-    private PostJsonHolder<T> holder;
+    private Holder<T> holder;
 
     public PostJsonRequest(int method, String url, String requestBody, Response.Listener<T> listener, Response.ErrorListener errorListener) {
         super(method, url, requestBody, listener, errorListener);
     }
 
-    public PostJsonRequest(PostJsonHolder<T> holder, Class<T> tClass,String ip) {
-        super(Method.POST, holder.getUrl(ip), holder.getRequestBody(), null, new Error(holder));
+    public PostJsonRequest(Holder<T> holder, Class<T> tClass) {
+        super(Method.POST, holder.getUrl(), holder.getRequestBody(), null, new Error(holder));
         this.holder = holder;
         this.tClass = tClass;
-        Log.i("post参数", "{" + holder.getRequestBody() + "}");
+        LogCat.i("post参数", "{" + holder.getRequestBody() + "}");
     }
 
 
     @Override
     protected void deliverResponse(T response) {
-        if (holder.getDialog() != null && holder.getDialog().isShowing()) {
-            holder.getDialog().dismiss();
+        if (holder.dialog != null && holder.dialog.isShowing()) {
+            holder.dialog.dismiss();
         }
-        holder.getShowData().showData(response);
+        holder.getData.getData(response, 0);// 0 的作用查看于Holder<T> 中的tag
     }
 
     @Override
@@ -59,28 +57,28 @@ public class PostJsonRequest<T> extends JsonRequest<T> {
     }
 
     public static class Error implements Response.ErrorListener {
-        PostJsonHolder holder;
+        Holder holder;
 
-        public Error(PostJsonHolder holder) {
+        public Error(Holder holder) {
             this.holder = holder;
         }
 
         @Override
         public void onErrorResponse(VolleyError error) {
             error.printStackTrace();
-            if (holder != null && holder.getActivity() != null) {
-                if (!"".equals(holder.getErrorMessage())) {
-                    ToastTools.showShort(holder.getActivity().getApplicationContext()
-                            , holder.getErrorMessage() == null
-                                    ? holder.getActivity().getString(com.bm.base.R.string.data_fail) : holder.getErrorMessage());
+            if (holder != null && holder.activity != null) {
+                if (!"".equals(holder.errorMessage)) {
+                    ToastTools.showShort(holder.activity.getApplicationContext()
+                            , holder.errorMessage == null
+                                    ? holder.activity.getString(com.bm.base.R.string.data_fail) : holder.errorMessage);
                 }
 
-                if (holder.getDialog() != null && holder.getDialog().isShowing()) {
-                    holder.getDialog().dismiss();
+                if (holder.dialog != null && holder.dialog.isShowing()) {
+                    holder.dialog.dismiss();
                 }
 
-                if (holder.getErrorCallBack() != null) {
-                    holder.getErrorCallBack().onError(0);
+                if (holder.errorCallBack != null) {
+                    holder.errorCallBack.onError(0);
                 }
             }
         }

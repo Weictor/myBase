@@ -8,6 +8,6 @@ package com.base.interfaces;
  */
 public interface Parser<T> {
 
-    public T parse(String dataString);
+    T parse(String dataString);
 
 }

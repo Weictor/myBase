@@ -37,7 +37,6 @@ public class MD5Util {
 
 
         } catch (NoSuchAlgorithmException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return buf.toString().substring(8, 24);
