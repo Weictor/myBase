@@ -34,6 +34,7 @@ public class ToastTools {
 
     /**
      * 显示长时间
+     *
      * @param context
      * @param message
      */
@@ -43,6 +44,7 @@ public class ToastTools {
 
     /**
      * 显示短时间
+     *
      * @param context
      * @param message
      */
@@ -58,7 +60,7 @@ public class ToastTools {
      * @param msg
      * @param gravity
      */
-    public static void  MyToast(Activity activity, String msg, int gravity) {
+    public static void MyToast(Activity activity, String msg, int gravity) {
         toast = Toast.makeText(activity,
                 msg, Toast.LENGTH_SHORT);
         toast.setGravity(gravity, 0, 0);
@@ -67,23 +69,27 @@ public class ToastTools {
 
     /**
      * 自定义有字和图片的toast，可以设置显示的位置
+     *
      * @param activity
      * @param msg
      * @param drawable
      * @param bgDrawable
      * @param gravity
      */
-    public static void  MyToastWithPic(Activity activity, String msg, int drawable, int bgDrawable,int gravity) {
-        toast = Toast.makeText(activity,
-                msg, Toast.LENGTH_SHORT);
+    public static void MyToastWithPic(Activity activity, String msg, int drawable, int bgDrawable, int gravity) {
+        toast = Toast.makeText(activity, msg, Toast.LENGTH_SHORT);
         toast.setGravity(gravity, 0, 0);
         LinearLayout toastView = (LinearLayout) toast.getView();
         ImageView imageCodeProject = new ImageView(activity);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(DensityUtils.dip2px(activity, 60), DensityUtils.dip2px(activity, 20), DensityUtils.dip2px(activity, 60), DensityUtils.dip2px(activity, 20));
         imageCodeProject.setLayoutParams(layoutParams);
-        imageCodeProject.setImageResource(drawable);
-        toastView.setBackgroundResource(bgDrawable);
+        if (drawable != 0) {
+            imageCodeProject.setImageResource(drawable);
+        }
+        if (bgDrawable != 0) {
+            toastView.setBackgroundResource(bgDrawable);
+        }
         toastView.addView(imageCodeProject, 0);
         toast.show();
     }

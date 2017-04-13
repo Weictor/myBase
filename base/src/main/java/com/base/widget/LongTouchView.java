@@ -25,27 +25,27 @@ public class LongTouchView extends ImageView {
 
     public LongTouchView(Context context) {
         super(context);
-        Log.d(TAG, "RepeatButton1");
+//        Log.d(TAG, "RepeatButton1");
     }
 
     public LongTouchView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        Log.d(TAG, "RepeatButton");
+//        Log.d(TAG, "RepeatButton");
         setFocusable(true); //设置焦点
         setLongClickable(true); //启用长按事件，长按后会执行performLongClick()
     }
 
     public LongTouchView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        Log.d(TAG, "RepeatButton3");
+//        Log.d(TAG, "RepeatButton3");
     }
 
     private Runnable mThread = new Runnable() {
         public void run() {
-            Log.d(TAG, "mRepeaterThread run()");
+//            Log.d(TAG, "mRepeaterThread run()");
             doRepeat(false);
             if (isPressed()) {
-                Log.d(TAG, "mRepeaterThread run() press");
+//                Log.d(TAG, "mRepeaterThread run() press");
                 postDelayed(this, mInterval);//延迟mInterval后执行当前线程
             }
         }
@@ -55,7 +55,7 @@ public class LongTouchView extends ImageView {
      * @param end 表示最后一次长按，即结束长按事件
      */
     private void doRepeat(boolean end) {
-        Log.d(TAG, "mRepeaterThread run() end=" + end);
+//        Log.d(TAG, "mRepeaterThread run() end=" + end);
         long now = SystemClock.elapsedRealtime();//获取当前时间
         if (mListener != null) {
             mListener.onLongTouch(this, now - mStart, end ? -1 : mRepeatCount++);
@@ -74,14 +74,14 @@ public class LongTouchView extends ImageView {
      * 设置长按监听事件，初始化mInterval
      */
     public void setLongListener(LongListener listener, long interval) {
-        Log.d(TAG, "setRepeatListener interval=" + interval);
+//        Log.d(TAG, "setRepeatListener interval=" + interval);
         mListener = listener;
         mInterval = interval;
     }
 
     @Override
     public boolean performLongClick() {
-        Log.d(TAG, "performLongClick");
+//        Log.d(TAG, "performLongClick");
         mStart = SystemClock.elapsedRealtime();//获取系统当前时间
         mRepeatCount = 0;
         post(mThread);//调用post()方法，执行mThread
@@ -91,7 +91,7 @@ public class LongTouchView extends ImageView {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_UP) {
-            Log.d(TAG, "onTouchEvent UP");
+//            Log.d(TAG, "onTouchEvent UP");
             removeCallbacks(mThread);//删除队列当中未执行的线程对象
             if (mStart != 0) {
                 endRepeat();
@@ -114,13 +114,13 @@ public class LongTouchView extends ImageView {
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        Log.d(TAG, "onKeyUp keyCode=" + keyCode);
+//        Log.d(TAG, "onKeyUp keyCode=" + keyCode);
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_CENTER:
             case KeyEvent.KEYCODE_ENTER:
                 removeCallbacks(mThread);
                 if (mStart != 0) {
-                    Log.d(TAG, "onKeyUp mStart=" + mStart);
+//                    Log.d(TAG, "onKeyUp mStart=" + mStart);
                     endRepeat();
                 }
                 super.onKeyUp(keyCode, event);

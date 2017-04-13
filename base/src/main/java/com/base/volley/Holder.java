@@ -164,7 +164,7 @@ public class Holder<T> {
                 try {
                     fields[i].setAccessible(true);
                     if (fields[i].get(object) != null) {
-                        this.setParam(fields[i].getName(), fields[i].get(object) + "");
+                        setParam(fields[i].getName(), fields[i].get(object) + "");
                     }
                 } catch (IllegalArgumentException | IllegalAccessException e) {
                     e.printStackTrace();
