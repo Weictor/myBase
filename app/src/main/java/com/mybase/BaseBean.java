@@ -1,10 +1,10 @@
-package com.mybase;
+﻿package com.mybase;
 
 /**
  * Created by 俞智威
  * on 2015-12-03.
  * 10:19
- * Procedure Explain:获取数据的基类bean
+ * Procedure Explain:获取数据的基类bean   xiugai cesi
  */
 
 public class BaseBean {
